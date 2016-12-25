@@ -1,6 +1,35 @@
-<h1>
-  {{title}}
-</h1>
-<md-input-container>
-  <input md-input placeholder="Favorite food" value="Sushi">
-</md-input-container>
+<md-toolbar color="primary">
+  <h1>MiBa</h1>
+  <span class="example-fill-remaining-space"></span>
+  <span>{{title}}</span>
+</md-toolbar>
+
+<md-card>
+  <md-card-title>
+    <h2>Meetups</h2>
+  </md-card-title>
+  <md-nav-list>
+    <md-list>
+      <md-list-item *ngFor="let chatItem of chatItems">
+        <img md-list-avatar src={{chatItem.user.avatar}} alt="avatar alternative">
+        <h3 md-line> {{chatItem.meetup.meetupName}} </h3>
+        <span class="example-fill-remaining-space">{{date | amTimeAgo }}</span>
+        <p md-line>
+          <span> {{chatItem.user.firstName}}: </span>
+          <span class="demo-2">{{chatItem.lastMessage}} </span>
+        </p>
+      </md-list-item>
+    </md-list>
+  </md-nav-list>
+</md-card>
+
+
+
+<br>
+
+<div class="row">
+  <md-input-container>
+    <input md-input placeholder="message">
+  </md-input-container>
+  <button md-button>send</button>
+</div>
