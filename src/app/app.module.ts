@@ -8,10 +8,12 @@ import { MaterialModule } from '@angular/material';
 import {MomentModule} from 'angular2-moment';
 
 import { AppComponent } from './app.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChatComponent
   ],
   imports: [
     MaterialModule.forRoot(),
