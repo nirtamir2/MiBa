@@ -11,7 +11,7 @@
   <md-nav-list>
     <md-list>
       <md-list-item *ngFor="let chatItem of chatItems">
-        <img md-list-avatar src={{chatItem.user.avatar}} alt="avatar alternative">
+        <img md-list-avatar src= {{chatItem.user.avatar}} alt="avatar">
         <h3 md-line> {{chatItem.meetup.meetupName}} </h3>
         <span class="example-fill-remaining-space">{{date | amTimeAgo }}</span>
         <p md-line>

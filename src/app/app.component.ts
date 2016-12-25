@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { User } from 'app/core/models/user';
 
 @Component({
   selector: 'app-root',
@@ -7,26 +7,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app works!';
 
-  user = {
-    userName: 'cooldavid',
-    firstName: 'david',
-    lastName: 'biton',
-    avatar: 'https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png'
-  };
+  user: User;
+  meetup: any;
+  chatItems: any;
+  date: Date = new Date();
 
-  meetup = {
+
+  constructor() { }
+
+  ngOnInit() {
+    this.user = {
+      userName: 'cooldavid',
+      firstName: 'david',
+      lastName: 'biton',
+      avatar: 'https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png'
+    };
+
+    this.meetup = {
     meetupName: 'soccer heroes',
   };
 
+    this.chatItems = [{
+      user: this.user,
+      meetup: this.meetup,
+      lastMessage: 'lets play soccer in Azur'
+    }];
 
-  chatItems = [{
-    user: this.user,
-    meetup: this.meetup,
-    lastMessage: 'lets play soccer in Azur'
-  }];
+  }
 
-  date: Date = new Date();
 }

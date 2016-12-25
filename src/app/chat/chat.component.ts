@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'app/core/models/user';
 
 @Component({
   selector: 'app-chat',
@@ -7,27 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  sender = {
-    userName: 'cooldavid',
-    firstName: 'david',
-    lastName: 'biton',
-    avatar: 'https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png'
-  };
+  sender: User;
+  message: any;
+  messages: any[];
 
-  message = {
-    sender: this.sender,
-    content: 'lorem ipsum a lora',
-    sendDate: new Date()
-  }
-
-messages= [this.message, this.message, this.message ]
-
-  constructor() {
-
-
-  }
+  constructor() { }
 
   ngOnInit() {
+    this.sender = {
+      userName: 'cooldavid',
+      firstName: 'david',
+      lastName: 'biton',
+      avatar: 'https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png'
+    };
+
+    this.message = {
+      sender: this.sender,
+      content: 'lorem ipsum a lora',
+      sendDate: new Date()
+    }
+
+    this.messages = [this.message, this.message, this.message]
   }
 
 
