@@ -1,4 +1,4 @@
-import { User } from '../models/user';
+import {User} from './User';
 
 export class Meetup {
     name: string;

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'app/core/models/user';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../core/models/User';
+import * as io from 'socket.io-client';
+import {Message} from "../core/models/Message";
 
 @Component({
   selector: 'app-chat',
@@ -9,27 +11,26 @@ import { User } from 'app/core/models/user';
 export class ChatComponent implements OnInit {
 
   sender: User;
-  message: any;
-  messages: any[];
+  messages: Array<Message> = [];
+  io: any;
+  messageText: string;
 
-  constructor() { }
-
-  ngOnInit() {
-    this.sender = {
-      userName: 'cooldavid',
-      firstName: 'david',
-      lastName: 'biton',
-      avatar: 'https://inomics.com/sites/default/files/pictures/picture-95970-1460131169.png'
-    };
-
-    this.message = {
-      sender: this.sender,
-      content: 'lorem ipsum a lora',
-      sendDate: new Date()
-    }
-
-    this.messages = [this.message, this.message, this.message]
+  constructor() {
   }
 
+  ngOnInit() {
+    this.sender = new User();
+    this.io = io();
+    this.io.on('message', (message: Message) => {
+      this.messages.push(message);
+    })
+  }
+
+  sendMessage(messageText: string) {
+    let message: Message = new Message(this.sender, messageText);
+    this.messages.push(message);
+    this.messageText = '';
+    this.io.emit('message', message);
+  }
 
 }
