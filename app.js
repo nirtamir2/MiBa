@@ -42,10 +42,16 @@ server.listen(port, () => console.log(`API running on localhost:${port}`));
 
 
 const io = require('socket.io')(server);
-io.on('connection',  (socket) => {
-    console.log('a user connected');
-    socket.on("message", (message) => {
-        console.log('server got message: ' + message.content + " from " + socket.id);
-        socket.broadcast.emit('message', message);
-    });
+io.on('connection', (socket) => {
+  console.log(socket.id + ' connected');
+  socket.on("message", (message) => {
+    socket.broadcast.emit('message', message);
+  });
+  socket.on("rsvpAdd", (user) => {
+    socket.broadcast.emit("rsvpAdd", user);
+  });
+  socket.on("rsvpRemove", (user) => {
+    socket.broadcast.emit("rsvpRemove", user);
+  });
+  socket.on("disconnect", () => console.log(socket.id + " disconnected"));
 });

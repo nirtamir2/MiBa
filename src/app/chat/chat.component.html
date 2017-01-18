@@ -1,21 +1,29 @@
 <p>
-    chat works!
+  chat works!
 </p>
+<p>{{rsvps.length}} people are coming</p>
+<md-list-item *ngFor="let rsvp of rsvps">
+  <p md-line> {{rsvp.id + " is coming!"}} </p>
+</md-list-item>
+
 
 <md-list>
-    <md-list-item *ngFor="let message of messages">
-        <img md-list-avatar src={{message.sender.avatar}} alt="avatar">
-        <h3 md-line> {{message.sender.firstName}} </h3>
-        <p md-line> {{message.content}} </p>
-        <p md-line>
-            <small><span class="example-fill-remaining-space">{{message.sendDate | amTimeAgo }}</span></small>
-        </p>
-    </md-list-item>
+  <md-list-item *ngFor="let message of messages">
+    <img md-list-avatar src="{{message.sender.avatar}}" alt="avatar">
+    <p>{{message.sender.id}}</p>
+    <h3 md-line> {{message.sender.firstName}} </h3>
+    <p md-line> {{message.content}} </p>
+    <p md-line>
+      <small><span class="example-fill-remaining-space">{{message.sendDate | amTimeAgo }}</span></small>
+    </p>
+  </md-list-item>
 </md-list>
 
 <div class="row">
-    <md-input-container>
-        <input md-input placeholder="message" [(ngModel)]="messageText" (keyup.enter)="sendMessage(messageText)">
-    </md-input-container>
-    <button md-button (click)="sendMessage(messageText)">send</button>
+  <md-input-container>
+    <input md-input placeholder="message" [(ngModel)]="messageText" (keyup.enter)="sendMessage(messageText)">
+  </md-input-container>
+  <button md-button (click)="sendMessage(messageText)">send</button>
+  <md-checkbox (change)="RSVP($event)">I'm in!</md-checkbox>
+
 </div>
